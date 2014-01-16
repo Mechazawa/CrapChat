@@ -14,6 +14,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 
+//TODO: Make this work
 public class SendActivity extends Activity {
     private Object sendable;
     private enum fileType {
