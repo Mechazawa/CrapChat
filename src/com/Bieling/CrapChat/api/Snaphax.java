@@ -129,7 +129,7 @@ public class Snaphax {
     public boolean UploadImage(Bitmap image, String[] recipients, int time) throws LoggedOutException{
         if(Auth_token == null)
             throw new LoggedOutException();
-        String mediaId = (Username + UUID.randomUUID().toString()).toUpperCase();
+            String mediaId = (Username + UUID.randomUUID().toString()).toUpperCase();
         try {
             Bundle uploadData = new Bundle();
             uploadData.putString("username", Username);
@@ -137,10 +137,17 @@ public class Snaphax {
             uploadData.putInt("timestamp", Api.GetTimestamp());
             uploadData.putString("media_id", mediaId);
             ByteArrayOutputStream stream = new ByteArrayOutputStream();
-            image.compress(Bitmap.CompressFormat.JPEG, 0, stream);
-            uploadData.putByteArray("data", Api.Encrypt(stream.toByteArray()));
-            stream.close();
+            for (int i = 100; i >= 0; i-= 5) {
+                try{
+                    image.compress(Bitmap.CompressFormat.JPEG, i, stream);
+                    uploadData.putByteArray("data", Api.Encrypt(stream.toByteArray()));
+                    break;
+                }catch (OutOfMemoryError oom) { }
+            }
+            //cleanup
             image = null;
+            System.gc(); //fucking android
+            stream.close();
 
             Api.postCall(
                     "/bq/upload", uploadData,
