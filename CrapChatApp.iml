@@ -19,6 +19,7 @@
     <orderEntry type="library" name="httpmime-4.3.1" level="project" />
     <orderEntry type="library" name="httpclient-4.3.1" level="project" />
     <orderEntry type="library" name="httpcore-4.3" level="project" />
+    <orderEntry type="library" name="class.rewriter" level="project" />
   </component>
 </module>
 

@@ -6,11 +6,11 @@
           android:icon="@drawable/ic_action_download"
           android:title="@string/action_download"
           android:showAsAction="ifRoom"/>
-    <item android:id="@+id/menu_send"
+    <!-- <item android:id="@+id/menu_send"
           android:icon="@drawable/ic_action_send"
           android:title="@string/action_send"
           android:showAsAction="ifRoom"/>
-    <!-- <item android:id="@+id/menu_settings"
+    <item android:id="@+id/menu_settings"
           android:title="@string/action_settings"
           android:showAsAction="never"/> -->
 </menu>

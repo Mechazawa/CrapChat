@@ -48,7 +48,13 @@ public class Globals {
             ////////////////////////
             "Changelog\n" +
                     "# Fixed a bug where the thumbnails didn't show up on some devices\n" +
-                    "# Fixed images looking 'stretched' in the thumbnails"
+                    "# Fixed images looking 'stretched' in the thumbnails",
+
+            ////////////////////////
+            "Changelog\n" +
+                    "# Fixed some small bugs\n" +
+                    "# Fixed an out of memory bug\n" +
+            "\nI've started work on sending snaps. So you guys can look forward to that"
     };
 
     public Globals(Context context) {

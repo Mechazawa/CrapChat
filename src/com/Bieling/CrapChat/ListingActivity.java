@@ -40,7 +40,7 @@ public class ListingActivity extends Activity {
         requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
         easyTracker = EasyTracker.getInstance(this);
 
-        int buildNr = -1;
+        int buildNr = 6;
         String versionName = "?.?";
         try {
             PackageInfo info = getApplicationContext().getPackageManager().getPackageInfo(getApplicationContext().getPackageName(), 0);
@@ -152,10 +152,10 @@ public class ListingActivity extends Activity {
                 Intent intent = new Intent(ListingActivity.this, SettingsActivity.class);
                 startActivity(intent);
                 break; */
-            case R.id.menu_send:
+            /*case R.id.menu_send:
                 Intent i = new Intent( Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                 startActivityForResult(i, RESULT_LOAD_IMAGE);
-                break;
+                break;*/
         }
         return super.onOptionsItemSelected(item);
     }

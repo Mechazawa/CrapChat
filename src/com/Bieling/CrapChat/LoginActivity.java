@@ -19,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import com.Bieling.CrapChat.api.Snaphax;
 import com.google.analytics.tracking.android.EasyTracker;
+import com.newrelic.agent.android.NewRelic;
 
 import java.io.File;
 
@@ -56,6 +57,7 @@ public class LoginActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        NewRelic.withApplicationToken( "AA7fa5ccab6c64dd7fcadf1aee1e7df6359a0e21ec" ).start(this.getApplication());
 
         new Globals(getApplicationContext());
         File f = (new File(Globals.SnapsDir));
