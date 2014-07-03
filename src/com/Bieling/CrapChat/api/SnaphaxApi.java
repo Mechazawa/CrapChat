@@ -113,39 +113,6 @@ public class SnaphaxApi {
         return abyte0;
     }
 
-    /*public String postCall(String endpoint, Bundle post_data, String param1, String param2) throws Exception{
-        post_data.putString("req_token", Hash(param1, param2));
-
-        URL url = new URL(baseurl + endpoint);
-        debug(url.toString());
-
-        HttpsURLConnection con = (HttpsURLConnection) url.openConnection();
-
-        //add reuqest header
-        con.setRequestMethod("POST");
-        con.setRequestProperty("User-Agent", user_agent);
-        con.setUseCaches(false);
-        con.setDoOutput(true);
-
-        DataOutputStream wr = new DataOutputStream(con.getOutputStream());
-        wr.writeBytes(encode(post_data));
-
-        wr.flush();
-        wr.close();
-
-        BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
-        String inputLine;
-        StringBuffer response = new StringBuffer();
-
-        while ((inputLine = in.readLine()) != null) {
-            response.append(inputLine);
-        }
-        in.close();
-        debug(response.toString());
-
-        return response.toString();
-    }       */
-
     public String postCall(String endpoint, Bundle post_data, String param1, String param2) throws Exception {
         post_data.putString("req_token", Hash(param1, param2));
         URL url = new URL(baseurl + endpoint);
@@ -214,103 +181,7 @@ public class SnaphaxApi {
 
         return multipartentity;
     }
-
-    /*public String postCall(String endpoint, Bundle post_data, String param1, String param2, byte[] data, MediaType type) throws Exception {
-        post_data.putString("req_token", Hash(param1, param2));
-
-        File uploadable = new File(Globals.SnapsDir, "CACHE_" + GetTimestamp() + ".jpg");
-
-        String boundary = "*****";
-        String lineEnd = "\r\n";
-        String twoHyphens = "--";
-        URL url = new URL(baseurl + endpoint);
-        debug(url.toString());
-
-        HttpsURLConnection con = (HttpsURLConnection) url.openConnection();
-
-        //add reuqest header
-        con.setRequestMethod("POST");
-        con.setRequestProperty("User-Agent", user_agent);
-        con.setUseCaches(false);
-        con.setDoOutput(true);
-        if(data != null && data.length > 0) {
-            con.setRequestProperty("Content-Type", "multipart/form-data;boundary="+boundary);
-            con.setRequestProperty("Connection", "Keep-Alive");
-            con.setDoInput(true);
-
-            uploadable.createNewFile();
-            FileOutputStream fos = new FileOutputStream(uploadable);
-            fos.write(data);
-            fos.close();
-            uploadable.setReadable(true, false);
-            uploadable.setWritable(true, false);
-        }
-
-        DataOutputStream wr = new DataOutputStream(con.getOutputStream());
-        wr.writeBytes(encode(post_data));
-
-        if(data != null && data.length > 0) {
-            debug("Aw shit we upload naow");
-            wr.writeBytes(lineEnd + twoHyphens + boundary + lineEnd);
-            wr.writeBytes("Content-Disposition: form-data; name=\"uploadedfile\";filename=\"file\"" + lineEnd);
-            wr.writeBytes(lineEnd);
-
-
-            // create a buffer of maximum size
-            int bytesRead, bytesAvailable, bufferSize;
-            int maxBufferSize = 1*1024*1024;
-
-            debug(uploadable.exists());
-            FileInputStream fileInputStream = new FileInputStream(uploadable);
-            bytesAvailable = fileInputStream.available();
-            bufferSize = Math.min(bytesAvailable, maxBufferSize);
-            byte[] buffer = new byte[bufferSize];
-
-            // read file and write it into form...
-
-            bytesRead = fileInputStream.read(buffer, 0, bufferSize);
-
-            while (bytesRead > 0)
-            {
-                wr.write(buffer, 0, bufferSize);
-                bytesAvailable = fileInputStream.available();
-                bufferSize = Math.min(bytesAvailable, maxBufferSize);
-                bytesRead = fileInputStream.read(buffer, 0, bufferSize);
-            }
-
-            // send multipart form data necesssary after file data...
-
-            wr.writeBytes(lineEnd);
-            wr.writeBytes(twoHyphens + boundary + twoHyphens + lineEnd);
-
-            // close streams
-            fileInputStream.close();
-            debug("Done uploading");
-        }
-
-        wr.flush();
-        wr.close();
-
-        //debug(con.getResponseCode() + ": " + con.getResponseMessage());
-
-        BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
-        String inputLine;
-        StringBuffer response = new StringBuffer();
-
-        while ((inputLine = in.readLine()) != null) {
-            response.append(inputLine);
-        }
-        in.close();
-        debug(response.toString());
-
-        if(uploadable.exists())
-            uploadable.delete();
-
-        return response.toString();
-    }                        */
-
-
-
+    
     @SuppressWarnings("deprecation")
     public String encode(Bundle data) {
         String encoded = "";
